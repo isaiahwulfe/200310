@@ -21,6 +21,7 @@ const Home = ({ user, logout }) => {
 
   const [conversations, setConversations] = useState([]);
   const [activeConversation, setActiveConversation] = useState(null);
+  const [count, setCount] = useState(0);
 
   const classes = useStyles();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -51,6 +52,13 @@ const Home = ({ user, logout }) => {
 
   const saveMessage = async (body) => {
     const { data } = await axios.post("/api/messages", body);
+    setCount(count + 1);
+    console.log(count);
+    if (!body.conversationId) {
+      addNewConvo(body.recipientId, data.message);
+    } else {
+      addMessageToConversation(data);
+    }
     return data;
   };
 
@@ -66,13 +74,8 @@ const Home = ({ user, logout }) => {
     try {
       const data = saveMessage(body);
 
-      if (!body.conversationId) {
-        addNewConvo(body.recipientId, data.message);
-      } else {
-        addMessageToConversation(data);
-      }
-
       sendMessage(data, body);
+
     } catch (error) {
       console.error(error);
     }
@@ -95,6 +98,7 @@ const Home = ({ user, logout }) => {
     (data) => {
       // if sender isn't null, that means the message needs to be put in a brand new convo
       const { message, sender = null } = data;
+
       if (sender !== null) {
         const newConvo = {
           id: message.conversationId,
@@ -104,7 +108,6 @@ const Home = ({ user, logout }) => {
         newConvo.latestMessageText = message.text;
         setConversations((prev) => [newConvo, ...prev]);
       }
-
       conversations.forEach((convo) => {
         if (convo.id === message.conversationId) {
           convo.messages.push(message);
@@ -190,7 +193,7 @@ const Home = ({ user, logout }) => {
     if (!user.isFetching) {
       fetchConversations();
     }
-  }, [user]);
+  }, [user.isFetching, count]);
 
   const handleLogout = async () => {
     if (user && user.id) {
