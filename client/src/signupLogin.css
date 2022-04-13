@@ -25,11 +25,8 @@
     top: 35%;
 }
 .hero-text{
-    position: relative;
     color: white;
-    font-family: 'Open Sans';
-    font-size: 26px;
-    line-height: 154%;
+    padding-bottom: 1rem
 }
 @media only screen and (max-width: 900px) {
     .form-container{
@@ -44,4 +41,20 @@
 }
 .input-text{
     width:100%;
+}
+.MuiTextField-root > label {
+    color: #B0B0B0;
+    font-weight: bold;
+}
+.MuiTextField-root > .MuiFormLabel-root.Mui-focused {
+    color: #B0B0B0;
+    font-weight: bold;
+    position: relative;
+    top: -5%
+}
+.MuiTextField-root > .MuiFormLabel-filled{
+    color: #B0B0B0;
+    font-weight: bold;
+    position: relative;
+    top: -5%
 }

@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 
 const SignupLogin = (props) => {
-
     return (
     <Grid
       container
@@ -31,12 +30,12 @@ const SignupLogin = (props) => {
             </g>
           </svg>
           <Box className="hero-text-container">
-            <p align="center" className="hero-text">
+            <Typography variant="h5" align="center" className="hero-text">
               Converse with anyone
-            </p>
-            <p align="center" className="hero-text">
+            </Typography>
+            <Typography variant="h5" align="center" className="hero-text">
               with any language
-            </p>
+            </Typography>
           </Box>
         </Box>
       </Grid>
@@ -65,7 +64,7 @@ const SignupLogin = (props) => {
                 <Typography variant="h4" style={{fontWeight:"bold"}}>{props.formHeader}</Typography>
               </Grid>
               {props.userName ? (
-                  <Grid item xs={10} className="input-container">
+                  <Grid item xl={5} className="input-container">
                     <TextField
                         variant="standard"
                         aria-label="username"
@@ -73,12 +72,18 @@ const SignupLogin = (props) => {
                         name="username"
                         type="text"
                         className="input-text"
+                        inputProps={{
+                            style: {
+                                fontWeight: "bold"
+                            }
+                        }}
+                        InputLabelProps={{ required: false }}
                         required
                     />
                   </Grid>
               ):(<></>)}
               {props.email ? (
-                <Grid item xs={10} className="input-container">
+                <Grid item xl={5} className="input-container">
                     <TextField
                     variant="standard"
                     label="E-mail address"
@@ -86,23 +91,32 @@ const SignupLogin = (props) => {
                     type="email"
                     name="email"
                     className="input-text"
+                    inputProps={{
+                        style: {
+                            fontWeight: "bold"
+                        }
+                    }}
+                    InputLabelProps={{ required: false }}
                     required
                     />
                 </Grid>
               ) : (<></>)}
               {props.pass1 ? (
-                  <Grid item xs={10} className="input-container">
+                  <Grid item xl={5} className="input-container">
                     <FormControl error={!!props.formErrorMessage} className="input-text">
                         <TextField
                         variant="standard"
                         aria-label="password"
                         label="Password"
                         type="password"
-                        inputProps={{ minLength: 6 }}
-                        name="password"
-                        InputProps={{
-                            endAdornment: props.endAdornment
+                        inputProps={{ 
+                            minLength: 6, 
+                            style: {
+                                fontWeight: "bold"
+                            }
                         }}
+                        name="password"
+                        InputLabelProps={{ required: false }}
                         required
                         />
                         <FormHelperText>
@@ -112,14 +126,20 @@ const SignupLogin = (props) => {
                     </Grid>
               ) : (<></>)}
               {props.pass2 ? (
-                <Grid item xs={10} className="input-container">
+                <Grid item className="input-container">
                     <FormControl error={!!props.formErrorMessage} className="input-text">
                     <TextField
                         variant="standard"
                         label="Confirm Password"
                         aria-label="confirm password"
                         type="password"
-                        inputProps={{ minLength: 6 }}
+                        inputProps={{ 
+                            minLength: 6, 
+                            style: {
+                                fontWeight: "bold"
+                            }
+                        }}
+                        InputLabelProps={{ required: false }}
                         name="confirmPassword"
                         required
                     />
