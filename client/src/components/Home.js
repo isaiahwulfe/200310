@@ -73,7 +73,6 @@ const Home = ({ user, logout }) => {
         }
         sendMessage(data, body);
       })
-      data.catch((error) => console.error(error))
     } catch (error) {
       console.error(error);
     }
@@ -85,7 +84,7 @@ const Home = ({ user, logout }) => {
         prev.map(convo =>{
           const convoCopy = { ...convo };
           if (convo.otherUser.id === recipientId) {
-            convoCopy.messages.push(message);
+            convoCopy.messages = [ ...convoCopy.messages, message];
             convoCopy.latestMessageText = message.text;
             convoCopy.id = message.conversationId;
           }
@@ -113,7 +112,7 @@ const Home = ({ user, logout }) => {
         prev.map(convo => {
           const convoCopy = { ...convo };
           if (convo.id === message.conversationId) {
-            convoCopy.messages.push(message);
+            convoCopy.messages = [ ...convoCopy.messages, message];
             convoCopy.latestMessageText = message.text;
           }
           return convoCopy
