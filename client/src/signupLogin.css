@@ -1,18 +1,20 @@
-.forgot-link{
-    color: #3A8DFF;
-    font-size: .75rem;
-    text-decoration: none
-}
 .hero-image{
     width: 100%;
     height: 100vh;
-    background: url("./images/bg-img.png"), linear-gradient(#3A8DFF, #86B9FF);
-    background-blend-mode: multiply;
-    opacity: 0.85;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url("./images/bg-img.png");
     background-size: cover;
+    background-blend-mode: normal;
     position: relative;
+}
+.hero-image::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: linear-gradient(#3A8DFF, #86B9FF);
+    opacity: 0.85;
 }
 .shape{
     position: relative;
@@ -28,19 +30,28 @@
     color: white;
     padding-bottom: 1rem
 }
+#alt-message{
+    margin-top: 2.75rem;
+}
+#alt-button{
+    margin: 2rem 4rem 0 2rem
+}
 @media only screen and (max-width: 900px) {
+    .hero-image{
+        display: none;
+    }
     .form-container{
         padding-bottom: 3rem;
-    } 
+    }
+    #alt-button{
+        margin: 2rem 0 0 2rem
+    }
   }
-.input-container{
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-    padding: 2rem
-}
 .input-text{
-    width:100%;
+    width:80%;
+    position: relative; 
+    left: 50%;
+    transform: translate(-50%);
 }
 .MuiTextField-root > label {
     color: #B0B0B0;
