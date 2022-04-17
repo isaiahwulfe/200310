@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   Box,
@@ -10,6 +10,9 @@ import {
 } from '@material-ui/core';
 
 const SignupLogin = (props) => {
+  const [align, setAlign] = useState(window.innerWidth > 900 ? 'flex-end' : 'center');
+  const screenSize = () => window.innerWidth > 900 ? setAlign('flex-end') : setAlign('center');
+  window.addEventListener('resize', screenSize);
     return (
     <Grid
       container
@@ -19,7 +22,7 @@ const SignupLogin = (props) => {
       spacing={0}
     >
 
-      <Grid item xs={12} md={4} order={{xs: 2, md: 1}}>
+      <Grid item md={4}>
         <Box className='hero-image'>
           <svg alt="Chat Bubble" className="shape" width="67px" height="67px" viewBox="0 0 67 67" version="1.1" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
             <g id="chat">
@@ -40,31 +43,31 @@ const SignupLogin = (props) => {
         </Box>
       </Grid>
 
-      <Grid item xs={12} md={8} order={{xs: 1, md: 2}} className="form-container">
+      <Grid item xs={12} md={8}>
         <Grid 
           container
           direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-start"
+          justifyContent={align}
           >
           <Grid item>
-            <Typography color="secondary" style={{marginTop:"2.75rem"}}>{props.headerTag}</Typography>
+            <Typography color="secondary" id="alt-message">{props.headerTag}</Typography>
           </Grid>
-          <Grid item>
-            <Button href={props.href} variant="contained" style={{padding:".75rem 3rem",margin:"2rem 4rem 0 2rem", color:"#3A8DFF", backgroundColor:"#FFF"}}>{props.headerAction}</Button>
+          <Grid item id="alt-button">
+            <Button href={props.href} variant="contained" style={{color:"#3A8DFF", backgroundColor:"#FFF", padding:".75rem 3rem"}}>{props.headerAction}</Button>
           </Grid>
         </Grid>
         <form onSubmit={props.handleRegister}>
           <Grid 
             container
             direction="column"
+            className="form-container"
             style={{paddingTop:"3rem"}}
             >
-              <Grid item xs={10} className="input-container">
+              <Grid item className="input-text">
                 <Typography variant="h4" style={{fontWeight:"bold"}}>{props.formHeader}</Typography>
               </Grid>
               {props.userName ? (
-                  <Grid item xl={5} className="input-container">
+                  <Grid item>
                     <TextField
                         variant="standard"
                         aria-label="username"
@@ -83,7 +86,7 @@ const SignupLogin = (props) => {
                   </Grid>
               ):(<></>)}
               {props.email ? (
-                <Grid item xl={5} className="input-container">
+                <Grid item>
                     <TextField
                     variant="standard"
                     label="E-mail address"
@@ -102,7 +105,7 @@ const SignupLogin = (props) => {
                 </Grid>
               ) : (<></>)}
               {props.pass1 ? (
-                  <Grid item xl={5} className="input-container">
+                  <Grid item>
                     <FormControl error={!!props.formErrorMessage} className="input-text">
                         <TextField
                         variant="standard"
@@ -126,7 +129,7 @@ const SignupLogin = (props) => {
                     </Grid>
               ) : (<></>)}
               {props.pass2 ? (
-                <Grid item className="input-container">
+                <Grid item>
                     <FormControl error={!!props.formErrorMessage} className="input-text">
                     <TextField
                         variant="standard"
