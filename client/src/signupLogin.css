@@ -1,0 +1,90 @@
+.hero-image{
+    width: 100%;
+    height: 100vh;
+    background: url("./images/bg-img.png");
+    background-size: cover;
+    background-blend-mode: normal;
+    position: relative;
+}
+.hero-image::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: linear-gradient(#3A8DFF, #86B9FF);
+    opacity: 0.85;
+}
+.shape{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 30%;
+}
+.hero-text-container{
+    position: relative;
+    top: 35%;
+}
+.hero-text{
+    color: white;
+    padding-bottom: 1rem
+}
+#alt-message{
+    margin-top: 2.75rem;
+}
+#alt-button-container{
+    margin: 2rem 4rem 0 2rem
+}
+.button-link{
+    text-decoration: none;
+}
+#alt-button{
+   color: #3A8DFF;
+   background-color: #FFF;
+   padding: .75rem 3rem 
+}
+.form-container{
+    padding-top: 3rem;
+}
+@media only screen and (max-width: 900px) {
+    .hero-image{
+        display: none;
+    }
+    .form-container{
+        padding-bottom: 3rem;
+    }
+    #alt-button-container{
+        margin: 2rem 0 0 2rem
+    }
+  }
+#header-message{
+    font-weight: bold;
+}
+#main-button{
+    margin: 3rem auto;
+    width: 10rem
+}
+.input-text{
+    width:80%;
+    position: relative; 
+    left: 50%;
+    transform: translate(-50%);
+    
+}
+.MuiTextField-root > label {
+    color: #B0B0B0;
+    font-weight: bold;
+}
+.MuiTextField-root > .MuiFormLabel-root.Mui-focused {
+    color: #B0B0B0;
+    font-weight: bold;
+    position: relative;
+    top: -5%
+}
+.MuiTextField-root > .MuiFormLabel-filled{
+    color: #B0B0B0;
+    font-weight: bold;
+    position: relative;
+    top: -5%
+}

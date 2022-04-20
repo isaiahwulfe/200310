@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Grid, CssBaseline, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
 import { SidebarContainer } from "../components/Sidebar";
 import { ActiveChat } from "../components/ActiveChat";

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter } from 'react-router-dom';
 
 import { theme } from './themes/theme';
@@ -15,11 +15,11 @@ axios.interceptors.request.use(async function (config) {
 
 function App() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 
