@@ -33,8 +33,19 @@
 #alt-message{
     margin-top: 2.75rem;
 }
-#alt-button{
+#alt-button-container{
     margin: 2rem 4rem 0 2rem
+}
+.button-link{
+    text-decoration: none;
+}
+#alt-button{
+   color: #3A8DFF;
+   background-color: #FFF;
+   padding: .75rem 3rem 
+}
+.form-container{
+    padding-top: 3rem;
 }
 @media only screen and (max-width: 900px) {
     .hero-image{
@@ -43,15 +54,23 @@
     .form-container{
         padding-bottom: 3rem;
     }
-    #alt-button{
+    #alt-button-container{
         margin: 2rem 0 0 2rem
     }
   }
+#header-message{
+    font-weight: bold;
+}
+#main-button{
+    margin: 3rem auto;
+    width: 10rem
+}
 .input-text{
     width:80%;
     position: relative; 
     left: 50%;
     transform: translate(-50%);
+    
 }
 .MuiTextField-root > label {
     color: #B0B0B0;
