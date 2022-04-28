@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from "@mui/styles";
 import { Box, Typography, Avatar } from '@material-ui/core';
+import HandleImages from './HandleImages';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -28,10 +29,22 @@ const useStyles = makeStyles(() => ({
     color: '#FFFFFF',
     letterSpacing: -0.2,
     padding: 8,
+    textAlign: 'center'
+  },
+  image: {
+    width: '7rem',
+    height: '5rem',
+    borderRadius: '10px 10px 0 10px',
+  },
+  images: {
+    width: '7rem',
+    height: '5rem',
+    borderRadius: '10px 10px 0 10px',
+    margin: '.5rem 0 0 .5rem',
   },
 }));
 
-const OtherUserBubble = ({ text, time, otherUser }) => {
+const OtherUserBubble = ({ text, time, otherUser, attachments }) => {
   const classes = useStyles();
 
   return (
@@ -45,9 +58,15 @@ const OtherUserBubble = ({ text, time, otherUser }) => {
         <Typography className={classes.usernameDate}>
           {otherUser.username} {time}
         </Typography>
-        <Box className={classes.bubble}>
-          <Typography className={classes.text}>{text}</Typography>
-        </Box>
+        {attachments ? <HandleImages 
+                        attachments={attachments}
+                        text={text}
+                        classes={classes}
+                       /> : (
+          <Box className={classes.bubble}>
+            <Typography className={classes.text}>{text}</Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );
