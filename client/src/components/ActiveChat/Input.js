@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 import { FormControl, FilledInput, Typography, Box } from '@material-ui/core';
 import { makeStyles } from "@mui/styles";
 import UploadImage from './UploadImage';
@@ -33,31 +34,20 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     setText(event.target.value);
   };
 
-  const toCloud = async (files) => {
+  const upLoadImageToCloud = async (files) => {
       if(files.length > 0){
         const list = [];
         const url = "https://api.cloudinary.com/v1_1/dzwkpezat/image/upload";
         const formData = new FormData();
-        try {
-          for(let i=0; i < files.length; i++){
-            const file = files[i];
-            formData.append("file", file);
-            formData.append("upload_preset", "jkzsd35e");
-  
-            await fetch(url, {
-              method: "POST",
-              body: formData
-            })
-              .then((response) => {
-                return response.text()
-              })
-              .then((data) => {
-                const readOut = JSON.parse(data);
-                list.push(readOut.url)
-              })
-          }
-        }catch(error){
-          console.error(error)
+        for(let i=0; i < files.length; i++){
+          const file = files[i];
+          formData.append("file", file);
+          formData.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+          const response = await axios.post(url, formData, {transformRequest: [(data, headers) => {
+            delete headers['x-access-token'];
+            return data
+          }]})
+          list.push(response.data.url)
         }
         return list
       }else{
@@ -70,7 +60,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     setLoading(true);
     const form = event.currentTarget;
     const formElements = form.elements;
-    const urls = await toCloud(formElements.file.files);
+    const urls = await upLoadImageToCloud(formElements.file.files);
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
     const reqBody = {
       text: formElements.text.value,

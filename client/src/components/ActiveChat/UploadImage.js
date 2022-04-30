@@ -1,9 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { makeStyles } from "@mui/styles";
 import { IconButton, Box, Grid } from '@material-ui/core';
-import './UploadImage.css';
 import Icon from '../../images/file-upload-icon.png';
 
+const useStyles = makeStyles(() => ({
+    fileButton: {
+        content: '',
+        backgroundColor: 'transparent'
+    },
+    fileInput: {
+        opacity: 0, 
+        height: 0,
+        width: 0
+    },
+    icon: {
+        height: '1.5rem',
+        width: '1.5rem', 
+        '&:hover': {
+            filter: 'drop-shadow(0 0 0.75rem gray)'
+        }
+    },
+    thumbnail: {
+        position: 'relative',
+        top: '.2rem',
+        width: '3rem',
+        height: '3rem',
+        objectFit: 'cover',
+        marginRight: '.25rem',
+        borderRadius: '6px',
+        filter: 'drop-shadow(0 0 0.1rem black)'
+    }
+}))
+
 const UploadImage = (props) => {
+    const styles = useStyles();
+    const regex = /\w{5,}$/g;
     const [imageDisplay, setImageDisplay] = useState();
     const [input, setInput] = useState(); 
 
@@ -21,7 +52,7 @@ const UploadImage = (props) => {
                     imageArray.push(URL.createObjectURL(file))
                 }
             }; 
-            setImageDisplay(imageArray);
+            setImageDisplay(imageArray)
         }
     }, [input, props.preview])
 
@@ -32,9 +63,9 @@ const UploadImage = (props) => {
                     {imageDisplay.map(e => {
                         return (
                             <img 
-                                key={imageDisplay.indexOf(e)}
+                                key={e.match(regex).toString()}
                                 src={e}
-                                className="thumbnail"
+                                className={styles.thumbnail}
                                 alt="thumbnail"
                             />
                         )
@@ -46,15 +77,15 @@ const UploadImage = (props) => {
                 <IconButton
                     variant="contained"
                     component="label"
-                    id="file-button"
+                    className={styles.fileButton}
                 >
                     <Box 
                         component="img"
                         alt="Upload"
                         src={Icon}
-                        className="icon"
+                        className={styles.icon}
                     />
-                    <input type="file" id="file-input" name="file" onInput={loadPreview} multiple />
+                    <input type="file" className={styles.fileInput} name="file" onInput={loadPreview} multiple />
                     
                 </IconButton>
             </Grid>

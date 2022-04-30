@@ -19,23 +19,13 @@ const useStyles = makeStyles(() => ({
     fontSize: 14,
     color: '#91A3C0',
     letterSpacing: -0.2,
-    padding: '.5rem 2rem',
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center', 
+    padding: '0 2rem .25rem 2rem',
   },
   bubble: {
     background: '#F4F6FA',
     borderRadius: '10px 10px 0 10px',
-  },
-  image: {
-    width: '7rem',
-    height: '5rem',
-  },
-  images: {
-    width: '7rem',
-    height: '5rem',
-    borderRadius: '10px 10px 0 10px',
-    margin: '.5rem 0 0 .5rem',
   },
 }));
 
